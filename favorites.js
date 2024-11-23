@@ -35,7 +35,7 @@ const recipes = [
             "1 colher de fermento"
         ],
         preparo: "1. Misture os ingredientes secos\n2. Adicione os líquidos\n3. Asse por 40 minutos a 180°C",
-        videoUrl: "https://www.youtube.com/watch?v=quhQP3T0YM4"
+        videoUrl: "https://www.youtube.com/embed/quhQP3T0YM4"
     },
     {
         id: 2,
@@ -50,7 +50,7 @@ const recipes = [
             "1 xícara de açúcar para calda"
         ],
         preparo: "1. Faça a calda\n2. Bata os ingredientes no liquidificador\n3. Asse em banho-maria",
-        videoUrl: "https://www.youtube.com/watch?v=GAxLcwSQW40"
+        videoUrl: "https://www.youtube.com/embed/GAxLcwSQW40"
     },
     {
         id: 3,
@@ -65,7 +65,7 @@ const recipes = [
             "Chocolate granulado"
         ],
         preparo: "1. Misture tudo na panela\n2. Cozinhe até soltar do fundo\n3. Faça as bolinhas",
-        videoUrl: "https://www.youtube.com/watch?v=L8jHzp_noxY"
+        videoUrl: "https://www.youtube.com/embed/L8jHzp_noxY"
     },
     {
         id: 4,
@@ -79,7 +79,7 @@ const recipes = [
             "1 lata de creme de leite"
         ],
         preparo: "1. Bata tudo no liquidificador\n2. Leve à geladeira",
-        videoUrl: "https://www.youtube.com/watch?v=itN5ZDEP-sc"
+        videoUrl: "https://www.youtube.com/embed/itN5ZDEP-sc"
     },
     {
         id: 5,
@@ -95,7 +95,7 @@ const recipes = [
             "4 colheres de chocolate em pó"
         ],
         preparo: "1. Faça o creme\n2. Monte camadas\n3. Leve à geladeira",
-        videoUrl: "https://www.youtube.com/watch?v=bIUTU-ORjtY"
+        videoUrl: "https://www.youtube.com/embed/bIUTU-ORjtY"
     },
     // Receitas Salgadas
     {
@@ -112,7 +112,7 @@ const recipes = [
             "200g de queijo minas"
         ],
         preparo: "1. Escalde o polvilho\n2. Adicione os ingredientes\n3. Asse por 20 minutos",
-        videoUrl: "https://www.youtube.com/watch?v=OnY3Z6mqEhk"
+        videoUrl: "https://www.youtube.com/embed/OnY3Z6mqEhk"
     },
     {
         id: 12,
@@ -128,7 +128,7 @@ const recipes = [
             "Temperos a gosto"
         ],
         preparo: "1. Faça a massa\n2. Prepare o recheio\n3. Modele e frite",
-        videoUrl: "https://www.youtube.com/watch?v=UMw29jjkd-s"
+        videoUrl: "https://www.youtube.com/embed/UMw29jjkd-s"
     },
     {
         id: 13,
@@ -144,7 +144,7 @@ const recipes = [
             "Molho branco"
         ],
         preparo: "1. Prepare os molhos\n2. Monte as camadas\n3. Asse por 45 minutos",
-        videoUrl: "https://www.youtube.com/watch?v=wEO7w7StD3A"
+        videoUrl: "https://www.youtube.com/embed/wEO7w7StD3A"
     },
     {
         id: 14,
@@ -160,7 +160,7 @@ const recipes = [
             "Queijo ralado"
         ],
         preparo: "1. Forre a forma com a massa\n2. Prepare o recheio\n3. Asse até dourar",
-        videoUrl: "https://www.youtube.com/watch?v=M64DXNFUbbg"
+        videoUrl: "https://www.youtube.com/embed/M64DXNFUbbg"
     },
     {
         id: 15,
@@ -176,7 +176,7 @@ const recipes = [
             "Temperos a gosto"
         ],
         preparo: "1. Misture tudo\n2. Faça bolinhas\n3. Frite até dourar",
-        videoUrl: "https://www.youtube.com/watch?v=945nkfyGAH4"
+        videoUrl: "https://www.youtube.com/embed/945nkfyGAH4"
     }
 ];
 
