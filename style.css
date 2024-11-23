@@ -527,3 +527,79 @@ textarea {
 .recipe-actions button:hover {
     opacity: 0.9;
 }
+
+/* Estilos para os botões de redes sociais */
+.social-links {
+    margin-top: 2rem;
+}
+
+.social-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.social-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.social-button:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.social-button i {
+    font-size: 1.2rem;
+}
+
+.social-button.linkedin {
+    background-color: #0077b5;
+}
+
+.social-button.github {
+    background-color: #333;
+}
+
+/* Dark mode styles */
+[data-theme="dark"] .social-button.github {
+    background-color: #2ea44f;
+}
+
+.theme-options {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.theme-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.theme-button:hover {
+    background-color: #e0e0e0;
+}
+
+[data-theme="dark"] .theme-button {
+    background-color: #333;
+    color: white;
+}
+
+[data-theme="dark"] .theme-button:hover {
+    background-color: #444;
+}
