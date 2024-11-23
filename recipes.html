@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="recipes.css">
+    <title>Minhas Receitas</title>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <i class="fas fa-utensils"></i>
+            <span>Livro de Receitas</span>
+        </div>
+        <nav>
+            <ul>
+                <li>
+                    <a href="index.html"><i class="fas fa-home"></i><span>Início</span></a>
+                </li>
+                <li class="active">
+                    <a href="recipes.html"><i class="fas fa-book"></i><span>Receitas</span></a>
+                </li>
+                <li>
+                    <a href="favorites.html"><i class="fas fa-star"></i><span>Favoritos</span></a>
+                </li>
+                <li>
+                    <a href="config.html"><i class="fas fa-cog"></i><span>Configurações</span></a>
+                </li>
+            </ul>
+        </nav>
+        <div class="toggle-btn">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+    </div>
+
+    <main>
+        <div class="recipe-container">
+            <div class="recipe-form box">
+                <h1>Cadastro de Receitas</h1>
+                <form id="recipeForm">
+                    <input type="text" name="nome" class="nome" placeholder="Nome da Receita" required>
+                    <div class="tipo-container">
+                        <label>Tipo de Receita:</label>
+                        <div class="tipo-options">
+                            <label class="tipo-option">
+                                <input type="radio" name="tipo" value="doce" required>
+                                <span><i class="fas fa-cookie"></i> Doce</span>
+                            </label>
+                            <label class="tipo-option">
+                                <input type="radio" name="tipo" value="salgado" required>
+                                <span><i class="fas fa-pizza-slice"></i> Salgado</span>
+                            </label>
+                        </div>
+                    </div>
+                    <textarea name="ingredientes" class="ingredientes" placeholder="Ingredientes (um por linha)" required></textarea>
+                    <textarea name="preparo" class="preparo" placeholder="Modo de Preparo" required></textarea>
+                    <input type="number" name="tempoPreparo" class="tempoPreparo" placeholder="Tempo de Preparo (minutos)" required>
+                    <input type="number" name="porcoes" class="porcoes" placeholder="Número de Porções" required>
+                    <div class="video-container">
+                        <div class="video-input-group">
+                            <input type="text" name="videoUrl" class="videoUrl" placeholder="Link do vídeo do YouTube">
+                            <button type="button" class="btn-search-video">
+                                <i class="fab fa-youtube"></i> Pesquisar no YouTube
+                            </button>
+                        </div>
+                    </div>
+                    <button type="submit">Cadastrar Receita</button>
+                </form>
+            </div>
+
+            <!-- YouTube Search Modal -->
+            <div class="modal" id="youtubeModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Pesquisar no YouTube</h2>
+                        <button class="close-modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="search-container">
+                            <input type="text" id="youtubeSearch" placeholder="Pesquisar receita no YouTube">
+                            <button id="searchButton">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                        <div id="searchResults">
+                            <!-- Search results will be added here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recipes-table box">
+                <h2>Minhas Receitas</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Tempo de Preparo</th>
+                                <th>Porções</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recipesTableBody">
+                            <!-- Recipes will be added here dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="recipes.js"></script>
+    <script src="darkmode.js"></script>
+</body>
+
+</html>

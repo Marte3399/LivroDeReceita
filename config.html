@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações - Gerenciador de Receitas</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="config.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-utensils"></i>
+                <span>Livro de Receitas</span>
+            </div>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="index.html"><i class="fas fa-home"></i><span>Início</span></a>
+                    </li>
+                    <li>
+                        <a href="recipes.html"><i class="fas fa-book"></i><span>Receitas</span></a>
+                    </li>
+                    <li>
+                        <a href="favorites.html"><i class="fas fa-star"></i><span>Favoritos</span></a>
+                    </li>
+                    <li class="active">
+                        <a href="config.html"><i class="fas fa-cog"></i><span>Configurações</span></a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="toggle-btn">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+        </aside>
+
+        <main class="content">
+            <h1>Configurações</h1>
+            
+            <section class="config-section">
+                <h2>Aparência</h2>
+                <div class="config-item">
+                    <label>Modo Escuro</label>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="darkModeToggle">
+                        <label for="darkModeToggle"></label>
+                    </div>
+                </div>
+            </section>
+
+            <section class="config-section">
+                <h2>Links</h2>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/thyago-de-souza-pozzibon-906126b6/" target="_blank" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://marte3399.github.io/jogomemoria/" target="_blank" class="social-link">
+                        <i class="fab fa-github"></i>
+                        <span>Outro Projeto</span>
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="config.js"></script>
+    <script src="darkmode.js"></script>
+</body>
+</html>
