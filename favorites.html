@@ -5,18 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="favorites.css">
     <title>Favoritos - Livro de Receitas</title>
 </head>
 
 <body>
-    <div class="sidebar">
-        <div class="logo">
-            <i class="fas fa-utensils"></i>
-            <span>Livro de Receitas</span>
-        </div>
+    <header>
+        <div class="logo">Livro de Receitas</div>
+        <button class="hamburger-menu">
+            <i class="fas fa-bars"></i>
+        </button>
         <nav>
             <ul>
                 <li>
@@ -32,11 +31,11 @@
                     <a href="config.html"><i class="fas fa-cog"></i><span>Configurações</span></a>
                 </li>
             </ul>
+            <button class="dark-mode-toggle" id="dark-mode-toggle">
+                <i class="fas fa-moon"></i>
+            </button>
         </nav>
-        <div class="toggle-btn">
-            <i class="fas fa-chevron-left"></i>
-        </div>
-    </div>
+    </header>
 
     <main>
         <div class="favorites-container">
@@ -60,6 +59,7 @@
         </div>
     </main>
 
+    <script src="favorites-script.js"></script>
     <script src="favorites.js"></script>
     <script src="darkmode.js"></script>
 </body>

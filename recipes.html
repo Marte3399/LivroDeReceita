@@ -1,42 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary-color: #0ea5e9;
+            --primary-dark: #0284c7;
+            --secondary-color: #eab308;
+            --error-color: #ef4444;
+            --favorite-color: #6b21a8;
+            --border-color: #e2e8f0;
+            --text-secondary: #64748b;
+        }
+    </style>
     <link rel="stylesheet" href="recipes.css">
-    <title>Minhas Receitas</title>
+    <title>Minhas Receitas - Livro de Receitas</title>
 </head>
-
 <body>
-    <div class="sidebar">
+    <header>
         <div class="logo">
-            <i class="fas fa-utensils"></i>
+            <i class="fas fa-book"></i>
             <span>Livro de Receitas</span>
         </div>
+        <button class="hamburger-menu" id="hamburger-menu">
+            <i class="fas fa-bars"></i>
+        </button>
         <nav>
             <ul>
-                <li>
-                    <a href="index.html"><i class="fas fa-home"></i><span>Início</span></a>
-                </li>
-                <li class="active">
-                    <a href="recipes.html"><i class="fas fa-book"></i><span>Receitas</span></a>
-                </li>
-                <li>
-                    <a href="favorites.html"><i class="fas fa-star"></i><span>Favoritos</span></a>
-                </li>
-                <li>
-                    <a href="config.html"><i class="fas fa-cog"></i><span>Configurações</span></a>
-                </li>
+                <li><a href="index.html"><i class="fas fa-home"></i><span>Início</span></a></li>
+                <li class="active"><a href="recipes.html"><i class="fas fa-book"></i><span>Receitas</span></a></li>
+                <li><a href="favorites.html"><i class="fas fa-heart"></i><span>Favoritos</span></a></li>
+                <li><a href="config.html"><i class="fas fa-cog"></i><span>Configurações</span></a></li>
             </ul>
+            <button class="dark-mode-toggle" id="dark-mode-toggle">
+                <i class="fas fa-moon"></i>
+            </button>
         </nav>
-        <div class="toggle-btn">
-            <i class="fas fa-chevron-left"></i>
-        </div>
-    </div>
+    </header>
 
     <main>
         <div class="recipe-container">
@@ -46,16 +49,15 @@
                     <input type="text" name="nome" class="nome" placeholder="Nome da Receita" required>
                     <div class="tipo-container">
                         <label>Tipo de Receita:</label>
-                        <div class="tipo-options">
-                            <label class="tipo-option">
-                                <input type="radio" name="tipo" value="doce" required>
-                                <span><i class="fas fa-cookie"></i> Doce</span>
-                            </label>
-                            <label class="tipo-option">
-                                <input type="radio" name="tipo" value="salgado" required>
-                                <span><i class="fas fa-pizza-slice"></i> Salgado</span>
-                            </label>
+                        <div class="filter-buttons">
+                            <button type="button" class="filter-btn" data-filter="doce">
+                                <i class="fas fa-cookie"></i> Doce
+                            </button>
+                            <button type="button" class="filter-btn" data-filter="salgado">
+                                <i class="fas fa-pizza-slice"></i> Salgado
+                            </button>
                         </div>
+                        <input type="hidden" name="tipo" id="tipoReceita" required>
                     </div>
                     <textarea name="ingredientes" class="ingredientes" placeholder="Ingredientes (um por linha)" required></textarea>
                     <textarea name="preparo" class="preparo" placeholder="Modo de Preparo" required></textarea>
@@ -115,8 +117,7 @@
         </div>
     </main>
 
+    <script src="menu.js"></script>
     <script src="recipes.js"></script>
-    <script src="darkmode.js"></script>
 </body>
-
 </html>

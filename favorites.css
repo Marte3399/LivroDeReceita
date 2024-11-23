@@ -6,7 +6,7 @@
 
 .favorites-container h1 {
     margin-bottom: 30px;
-    color: #1e293b;
+    color: var(--text-primary);
 }
 
 .favorites-header {
@@ -36,32 +36,34 @@
     align-items: center;
     gap: 8px;
     padding: 10px 20px;
-    border: 2px solid #e2e8f0;
+    border: 2px solid var(--border-color);
     border-radius: 8px;
-    background: white;
-    color: #64748b;
+    background: var(--bg-primary);
+    color: var(--text-secondary);
     cursor: pointer;
     transition: all 0.2s ease;
     font-size: 14px;
 }
 
 .filter-btn:hover {
-    border-color: #2563eb;
-    color: #2563eb;
+    border-color: var(--bg-button);
+    color: white;
+    background: var(--bg-button);
 }
 
 .filter-btn.active {
-    background: #2563eb;
-    border-color: #2563eb;
+    background: var(--bg-button);
+    border-color: var(--bg-button);
     color: white;
 }
 
 .recipe-card {
-    background: white;
+    background: var(--bg-primary);
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
     transition: transform 0.2s ease;
+    border: 1px solid var(--border-color);
 }
 
 .recipe-card:hover {
@@ -69,14 +71,14 @@
 }
 
 .recipe-card h2 {
-    color: #1e293b;
+    color: var(--text-primary);
     margin-bottom: 15px;
     font-size: 1.5rem;
 }
 
 .recipe-info {
     margin-bottom: 15px;
-    color: #64748b;
+    color: var(--text-secondary);
     display: flex;
     gap: 15px;
 }
@@ -88,7 +90,7 @@
 }
 
 .recipe-info i {
-    color: #2563eb;
+    color: var(--bg-button);
 }
 
 .recipe-section {
@@ -96,16 +98,13 @@
 }
 
 .recipe-section h3 {
-    color: #1e293b;
+    color: var(--text-primary);
     font-size: 1.1rem;
     margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
 }
 
 .recipe-section h3 i {
-    color: #2563eb;
+    color: var(--bg-button);
 }
 
 .ingredients-list {
@@ -115,7 +114,7 @@
 
 .ingredients-list li {
     padding: 5px 0;
-    color: #4b5563;
+    color: var(--text-secondary);
     display: flex;
     align-items: center;
     gap: 8px;
@@ -123,11 +122,11 @@
 
 .ingredients-list li::before {
     content: "•";
-    color: #2563eb;
+    color: var(--bg-button);
 }
 
 .preparation-steps {
-    color: #4b5563;
+    color: var(--text-secondary);
     line-height: 1.6;
     white-space: pre-line;
 }
@@ -148,16 +147,21 @@
     align-items: center;
     gap: 6px;
     font-size: 14px;
-    transition: background-color 0.2s ease;
-}
-
-.btn-unfavorite {
-    background-color: #eab308;
+    transition: all 0.2s ease;
+    background: var(--bg-button);
     color: white;
 }
 
+.card-actions button:hover {
+    background: var(--bg-button-hover);
+}
+
+.btn-unfavorite {
+    background-color: var(--favorite-color) !important;
+}
+
 .btn-unfavorite:hover {
-    background-color: #ca8a04;
+    opacity: 0.9;
 }
 
 .video-wrapper {
@@ -177,21 +181,15 @@
     height: 100%;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .favorites-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
 .content {
     flex: 1;
     padding: 20px;
-    margin-left: 250px; /* Mesma largura da sidebar */
+    margin-left: 250px;
+    background: var(--bg-secondary);
 }
 
 .sidebar.collapsed + .content {
-    margin-left: 80px; /* Largura da sidebar quando colapsada */
+    margin-left: 80px;
 }
 
 /* Responsividade */
@@ -200,7 +198,7 @@
         margin-left: 80px;
     }
     
-    .filter-buttons {
-        flex-wrap: wrap;
+    .favorites-grid {
+        grid-template-columns: 1fr;
     }
 }

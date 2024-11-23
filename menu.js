@@ -1,29 +1,63 @@
-// Menu toggle functionality
-document.addEventListener('DOMContentLoaded', () => {
-    const sidebar = document.querySelector('.sidebar');
-    const toggleBtn = document.querySelector('.toggle-btn');
-    const toggleIcon = toggleBtn.querySelector('i');
+// Menu mobile toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburgerMenu = document.getElementById('hamburger-menu');
+    const nav = document.querySelector('nav');
 
-    // Toggle menu state
-    function toggleMenu() {
-        sidebar.classList.toggle('collapsed');
-        toggleIcon.classList.toggle('fa-chevron-right');
-        toggleIcon.classList.toggle('fa-chevron-left');
-    }
+    // Toggle menu on hamburger click
+    hamburgerMenu.addEventListener('click', function() {
+        nav.classList.toggle('active');
+    });
 
-    // Add click event listener
-    toggleBtn.addEventListener('click', toggleMenu);
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        const isClickInside = nav.contains(event.target) || hamburgerMenu.contains(event.target);
+        
+        if (!isClickInside && nav.classList.contains('active')) {
+            nav.classList.remove('active');
+        }
+    });
 
-    // Load saved state
-    const isCollapsed = localStorage.getItem('menuCollapsed') === 'true';
-    if (isCollapsed) {
-        sidebar.classList.add('collapsed');
-        toggleIcon.classList.remove('fa-chevron-left');
-        toggleIcon.classList.add('fa-chevron-right');
-    }
-
-    // Save state on change
-    toggleBtn.addEventListener('click', () => {
-        localStorage.setItem('menuCollapsed', sidebar.classList.contains('collapsed'));
+    // Close menu when clicking on a menu item
+    const menuItems = document.querySelectorAll('nav a');
+    menuItems.forEach(item => {
+        item.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                nav.classList.remove('active');
+            }
+        });
     });
 });
+
+// Dark mode toggle
+const darkModeToggle = document.getElementById('dark-mode-toggle');
+const body = document.body;
+
+// Check for saved dark mode preference
+const darkMode = localStorage.getItem('darkMode');
+if (darkMode === 'enabled') {
+    body.classList.add('dark-mode');
+    updateDarkModeIcon();
+}
+
+// Toggle dark mode
+darkModeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    updateDarkModeIcon();
+    
+    // Save preference
+    if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('darkMode', 'enabled');
+    } else {
+        localStorage.setItem('darkMode', null);
+    }
+});
+
+// Update dark mode icon
+function updateDarkModeIcon() {
+    const icon = darkModeToggle.querySelector('i');
+    if (body.classList.contains('dark-mode')) {
+        icon.className = 'fas fa-sun';
+    } else {
+        icon.className = 'fas fa-moon';
+    }
+}

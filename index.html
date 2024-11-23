@@ -1,65 +1,70 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="index.css">
-    <title>Início - Livro de Receitas</title>
+    <title>Livro de Receitas</title>
 </head>
-
 <body>
-    <div class="sidebar">
+    <header>
         <div class="logo">
-            <i class="fas fa-utensils"></i>
+            <i class="fas fa-book"></i>
             <span>Livro de Receitas</span>
         </div>
+        <button class="hamburger-menu" id="hamburger-menu">
+            <i class="fas fa-bars"></i>
+        </button>
         <nav>
             <ul>
-                <li class="active">
-                    <a href="index.html"><i class="fas fa-home"></i><span>Início</span></a>
-                </li>
-                <li>
-                    <a href="recipes.html"><i class="fas fa-book"></i><span>Receitas</span></a>
-                </li>
-                <li>
-                    <a href="favorites.html"><i class="fas fa-star"></i><span>Favoritos</span></a>
-                </li>
-                <li>
-                    <a href="config.html"><i class="fas fa-cog"></i><span>Configurações</span></a>
-                </li>
+                <li class="active"><a href="index.html"><i class="fas fa-home"></i><span>Início</span></a></li>
+                <li><a href="recipes.html"><i class="fas fa-book"></i><span>Receitas</span></a></li>
+                <li><a href="favorites.html"><i class="fas fa-heart"></i><span>Favoritos</span></a></li>
+                <li><a href="config.html"><i class="fas fa-cog"></i><span>Configurações</span></a></li>
             </ul>
+            <button class="dark-mode-toggle" id="dark-mode-toggle">
+                <i class="fas fa-moon"></i>
+            </button>
         </nav>
-        <div class="toggle-btn">
-            <i class="fas fa-chevron-left"></i>
-        </div>
-    </div>
+    </header>
 
     <main>
-        <div class="recipes-container">
-            <h1>Nossas Receitas</h1>
-            
+        <div class="welcome-section">
+            <h1>Bem-vindo ao seu Livro de Receitas</h1>
+            <p>Encontre e organize suas receitas favoritas</p>
+        </div>
+
+        <div class="search-section">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Buscar receitas...">
+                <button id="searchButton">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
             <div class="filter-buttons">
                 <button class="filter-btn active" data-filter="todos">
-                    <i class="fas fa-th-list"></i> Todos
+                    <i class="fas fa-th-large"></i>
+                    Todas
                 </button>
                 <button class="filter-btn" data-filter="doce">
-                    <i class="fas fa-cookie"></i> Doces
+                    <i class="fas fa-cookie"></i>
+                    Doces
                 </button>
                 <button class="filter-btn" data-filter="salgado">
-                    <i class="fas fa-pizza-slice"></i> Salgados
+                    <i class="fas fa-pizza-slice"></i>
+                    Salgados
                 </button>
             </div>
+        </div>
 
-            <div class="recipes-grid" id="recipesGrid">
-                <!-- Recipes will be added here dynamically -->
-            </div>
+        <div class="recipes-grid" id="recipes-grid">
+            <!-- Receitas serão adicionadas aqui dinamicamente -->
         </div>
     </main>
 
+    <script src="menu.js"></script>
     <script src="index.js"></script>
     <script src="darkmode.js"></script>
 </body>

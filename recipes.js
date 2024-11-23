@@ -130,34 +130,103 @@ youtubeModal.addEventListener('click', (e) => {
     }
 });
 
+// Add variable to track which recipe is being edited
+let editingRecipeIndex = -1;
+
 // Function to add new recipe
 function addRecipe(e) {
     e.preventDefault();
     
-    // Get the selected tipo (doce/salgado)
-    const tipoSelected = document.querySelector('input[name="tipo"]:checked');
-    if (!tipoSelected) {
-        alert('Por favor, selecione o tipo da receita (doce ou salgado)');
-        return;
-    }
-    
-    const newRecipe = {
-        id: Date.now(),
-        nome: document.querySelector('input[name="nome"]').value,
-        tipo: tipoSelected.value,
-        tempoPreparo: document.querySelector('input[name="tempoPreparo"]').value,
-        porcoes: document.querySelector('input[name="porcoes"]').value,
-        ingredientes: document.querySelector('textarea[name="ingredientes"]').value
-            .split('\n')
-            .filter(ing => ing.trim() !== ''),
-        preparo: document.querySelector('textarea[name="preparo"]').value,
-        videoUrl: document.querySelector('input[name="videoUrl"]').value
-    };
+    // Check if we are editing a recipe
+    if (editingRecipeIndex !== -1) {
+        // Update the existing recipe
+        const updatedRecipe = {
+            id: recipes[editingRecipeIndex].id,
+            nome: document.querySelector('input[name="nome"]').value,
+            tipo: document.getElementById('tipoReceita').value,
+            tempoPreparo: document.querySelector('input[name="tempoPreparo"]').value,
+            porcoes: document.querySelector('input[name="porcoes"]').value,
+            ingredientes: document.querySelector('textarea[name="ingredientes"]').value
+                .split('\n')
+                .filter(ing => ing.trim() !== ''),
+            preparo: document.querySelector('textarea[name="preparo"]').value,
+            videoUrl: document.querySelector('input[name="videoUrl"]').value
+        };
+        recipes[editingRecipeIndex] = updatedRecipe;
+        editingRecipeIndex = -1;
+    } else {
+        // Get the selected tipo from the hidden input
+        const tipoSelected = document.getElementById('tipoReceita').value;
+        if (!tipoSelected) {
+            alert('Por favor, selecione o tipo da receita (doce ou salgado)');
+            return;
+        }
+        
+        const newRecipe = {
+            id: Date.now(),
+            nome: document.querySelector('input[name="nome"]').value,
+            tipo: tipoSelected,
+            tempoPreparo: document.querySelector('input[name="tempoPreparo"]').value,
+            porcoes: document.querySelector('input[name="porcoes"]').value,
+            ingredientes: document.querySelector('textarea[name="ingredientes"]').value
+                .split('\n')
+                .filter(ing => ing.trim() !== ''),
+            preparo: document.querySelector('textarea[name="preparo"]').value,
+            videoUrl: document.querySelector('input[name="videoUrl"]').value
+        };
 
-    recipes.push(newRecipe);
+        recipes.push(newRecipe);
+    }
     saveRecipes();
     recipeForm.reset();
+    // Reset the active state of tipo buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    // Clear the hidden input
+    document.getElementById('tipoReceita').value = '';
+    // Reset submit button text
+    const submitButton = recipeForm.querySelector('button[type="submit"]');
+    submitButton.textContent = 'Cadastrar Receita';
     renderRecipes();
+}
+
+// Function to edit recipe
+function editRecipe(index) {
+    // Save the index of the recipe being edited
+    editingRecipeIndex = index;
+    const recipe = recipes[index];
+    
+    // Fill in basic fields
+    document.querySelector('input[name="nome"]').value = recipe.nome;
+    document.querySelector('input[name="tempoPreparo"]').value = recipe.tempoPreparo;
+    document.querySelector('input[name="porcoes"]').value = recipe.porcoes;
+    
+    // Set recipe type
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        if (btn.dataset.filter === recipe.tipo) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+    document.getElementById('tipoReceita').value = recipe.tipo;
+    
+    // Fill in ingredients - handle both array and string formats
+    const ingredientesTextarea = document.querySelector('textarea[name="ingredientes"]');
+    if (Array.isArray(recipe.ingredientes)) {
+        ingredientesTextarea.value = recipe.ingredientes.join('\n');
+    } else if (typeof recipe.ingredientes === 'string') {
+        ingredientesTextarea.value = recipe.ingredientes;
+    }
+    
+    // Fill in preparation steps
+    document.querySelector('textarea[name="preparo"]').value = recipe.preparo || '';
+    
+    // Fill in video URL
+    document.querySelector('input[name="videoUrl"]').value = recipe.videoUrl || '';
+    
+    // Change submit button text to indicate editing
+    const submitButton = recipeForm.querySelector('button[type="submit"]');
+    submitButton.textContent = 'Atualizar Receita';
 }
 
 // Function to render recipes table
@@ -203,24 +272,6 @@ function toggleCustomFavorite(recipeId, button) {
     }
     
     saveCustomFavorites();
-}
-
-// Function to edit recipe
-function editRecipe(index) {
-    const recipe = recipes[index];
-    
-    document.querySelector('input[name="nome"]').value = recipe.nome;
-    document.querySelector('input[name="tempoPreparo"]').value = recipe.tempoPreparo;
-    document.querySelector('input[name="porcoes"]').value = recipe.porcoes;
-    document.querySelector(`input[name="tipo"][value="${recipe.tipo}"]`).checked = true;
-    document.querySelector('textarea[name="ingredientes"]').value = Array.isArray(recipe.ingredientes) ? 
-        recipe.ingredientes.join('\n') : recipe.ingredientes;
-    document.querySelector('textarea[name="preparo"]').value = recipe.preparo;
-    document.querySelector('input[name="videoUrl"]').value = recipe.videoUrl;
-    
-    recipes.splice(index, 1);
-    saveRecipes();
-    renderRecipes();
 }
 
 // Function to delete recipe
@@ -283,6 +334,18 @@ function renderFilteredRecipes(filteredRecipes) {
         recipesTableBody.appendChild(row);
     });
 }
+
+// Recipe type selection
+document.querySelectorAll('.filter-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        // Add active class to clicked button
+        button.classList.add('active');
+        // Update hidden input value
+        document.getElementById('tipoReceita').value = button.dataset.filter;
+    });
+});
 
 // Event listeners
 recipeForm.addEventListener('submit', addRecipe);

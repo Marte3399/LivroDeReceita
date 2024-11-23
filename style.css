@@ -15,6 +15,7 @@
     --bg-button: #2563eb;
     --bg-button-hover: #1d4ed8;
     --border-color: #e5e7eb;
+    --favorite-color: #6b21a8;
 }
 
 /* Dark Mode */
@@ -26,62 +27,127 @@ body.dark-mode {
     --bg-button: #2563eb;
     --bg-button-hover: #1d4ed8;
     --border-color: #404040;
+    --favorite-color: #7c3aed;
 }
 
 body {
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     background-color: var(--bg-secondary);
     color: var(--text-primary);
 }
 
-/* Caixa de formulário */
-.box {
+/* Header e Navegação */
+header {
     background: var(--bg-primary);
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.box h1 {
-    margin-bottom: 20px;
-    color: var(--text-primary);
-}
-
-/* Formulário */
-form {
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
     display: flex;
-    flex-direction: column;
-    gap: 15px;
+    align-items: center;
+    justify-content: space-between;
 }
 
-/* Campos de entrada */
-input[type="text"],
-input[type="number"] {
-    padding: 10px;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    font-size: 16px;
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-input[type="number"] {
-    -moz-appearance: textfield;
+nav {
+    display: flex;
+    align-items: center;
 }
 
-/* Estilo para o botão */
-button {
-    padding: 12px;
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li.active a {
     background: var(--bg-button);
     color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background 0.3s ease;
 }
 
-button:hover {
-    background: var(--bg-button-hover);
+nav ul li a i {
+    font-size: 1.2rem;
+}
+
+/* Main Content */
+main {
+    flex: 1;
+    padding: 2rem;
+    margin-top: 4rem;
+    width: 100%;
+}
+
+/* Recipe Grid */
+.recipes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.recipe-card {
+    background: var(--bg-primary);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Filter Buttons */
+.filter-buttons {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: #d2d2d3;
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--bg-button);
+    color: white;
 }
 
 /* Botão de favorito */
@@ -112,116 +178,352 @@ button:hover {
     font-size: 1.1em;
 }
 
-/* Estilos de validação */
-input:invalid {
-    border-color: red;
-}
-
-input:valid {
-    border-color: green;
-}
-
-label {
-    font-size: 14px;
+/* Menu Hamburguer */
+.hamburger-menu {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    background: none;
+    border: none;
     color: var(--text-primary);
+    padding: 0.5rem;
 }
 
-/* Barra lateral */
-.sidebar {
-    position: relative;
-    width: 260px;
+/* Responsivo */
+@media screen and (max-width: 768px) {
+    header {
+        padding: 1rem;
+    }
+
+    .hamburger-menu {
+        display: block;
+    }
+
+    nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 250px;
+        background-color: var(--bg-primary);
+        padding-top: 4rem;
+        transition: right 0.3s ease-in-out;
+        z-index: 1000;
+        flex-direction: column;
+    }
+
+    nav.active {
+        right: 0;
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    nav ul li {
+        width: 100%;
+    }
+
+    nav ul li a {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .recipes-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0.5rem;
+    }
+
+    .filter-buttons {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    header {
+        padding: 0.8rem;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .filter-buttons {
+        flex-direction: column;
+    }
+
+    .filter-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    main {
+        padding: 1rem;
+    }
+
+    .recipe-card {
+        margin: 0;
+    }
+}
+
+/* Formulário e outros elementos */
+.box {
     background: var(--bg-primary);
-    padding: 20px;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-top: 1rem;
+}
+
+form {
     display: flex;
     flex-direction: column;
-    transition: width 0.3s ease;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-right: 1px solid var(--border-color);
+    gap: 1rem;
 }
 
-.sidebar.collapsed {
-    width: 80px;
+input[type="text"],
+input[type="number"] {
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    font-size: 1rem;
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 0;
-    margin-bottom: 20px;
+button {
+    padding: 0.8rem;
+    background: var(--bg-button);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: var(--bg-button-hover);
+}
+
+/* Formulário de Configurações */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
     color: var(--text-primary);
+    font-weight: 500;
 }
 
-.logo i {
-    font-size: 24px;
-    color: var(--bg-button);
+.form-group select,
+.form-group input[type="text"],
+.form-group input[type="number"] {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 1rem;
 }
 
-.logo span {
-    font-size: 20px;
-    font-weight: bold;
+.form-group input[type="checkbox"] {
+    margin-right: 0.5rem;
 }
 
-.sidebar.collapsed .logo span {
-    display: none;
-}
-
-nav ul {
-    list-style: none;
-}
-
-nav ul li {
-    margin-bottom: 8px;
-}
-
-nav ul li a {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px;
-    text-decoration: none;
-    color: var(--text-secondary);
-    border-radius: 8px;
-    transition: all 0.3s ease;
-}
-
-nav ul li a:hover,
-nav ul li.active a {
-    background: var(--bg-button);
+.btn-save {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--bg-button);
     color: white;
-}
-
-nav ul li a i {
-    font-size: 18px;
-}
-
-.sidebar.collapsed nav ul li a span {
-    display: none;
-}
-
-.toggle-btn {
-    position: absolute;
-    top: 50%;
-    right: -12px;
-    width: 24px;
-    height: 24px;
-    background: var(--bg-button);
-    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
+    gap: 0.5rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-save:hover {
+    background-color: var(--bg-button-hover);
+}
+
+.btn-save i {
+    font-size: 1.2rem;
+}
+
+/* Responsivo para o formulário */
+@media screen and (max-width: 768px) {
+    .box {
+        margin: 1rem;
+    }
+}
+
+/* Notificação */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--bg-button);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    animation: slideIn 0.3s ease-out;
+    z-index: 1000;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Dark Mode Toggle */
+.dark-mode-toggle {
+    margin-left: 1rem;
+    background: none;
+    border: none;
+    color: var(--text-primary);
     cursor: pointer;
-    transform: translateY(-50%);
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
 }
 
-.sidebar.collapsed .toggle-btn i {
-    transform: rotate(180deg);
+.dark-mode-toggle:hover {
+    transform: scale(1.1);
 }
 
-/* Conteúdo principal */
-main {
-    flex: 1;
-    padding: 20px;
+/* Formulário de Receitas */
+.radio-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.radio-option:hover {
     background-color: var(--bg-secondary);
+}
+
+.radio-option input[type="radio"] {
+    margin: 0;
+}
+
+.radio-option i {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+}
+
+textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 1rem;
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Grid de Receitas */
+.recipes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.recipe-card {
+    background-color: var(--bg-primary);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px);
+}
+
+.recipe-card h3 {
+    margin: 0 0 1rem 0;
+    color: var(--text-primary);
+}
+
+.recipe-card .recipe-type {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--bg-secondary);
+    border-radius: 2rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.recipe-card .recipe-type i {
+    font-size: 1rem;
+}
+
+.recipe-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.recipe-actions button {
+    flex: 1;
+    padding: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.recipe-actions .btn-edit {
+    background-color: var(--bg-button);
+    color: white;
+}
+
+.recipe-actions .btn-delete {
+    background-color: #dc2626;
+    color: white;
+}
+
+.recipe-actions button:hover {
+    opacity: 0.9;
 }
